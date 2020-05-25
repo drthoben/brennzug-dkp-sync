@@ -18,7 +18,7 @@ export async function insertRowAfter(worksheet: GoogleSpreadsheetWorksheet, rowI
     );
   }
 
-  const response = await worksheet._spreadsheet.axios.request({
+  await worksheet._spreadsheet.axios.request({
     method: 'post',
     url: `https://sheets.googleapis.com/v4/spreadsheets/${worksheet._spreadsheet.spreadsheetId}:batchUpdate`,
     data: {
@@ -56,40 +56,4 @@ export async function insertRowAfter(worksheet: GoogleSpreadsheetWorksheet, rowI
       worksheet._cells[row][column]._row += 1;
     }
   }
-
-  // const response = await worksheet._spreadsheet.axios.request({
-  //   method: 'post',
-  //   url: `/values/${worksheet.encodedA1SheetName}:append`,
-  //   params: {
-  //     valueInputOption: 'USER_ENTERED',
-  //     insertDataOption: 'OVERWRITE',
-  //     includeValuesInResponse: true,
-  //   },
-  //   data: {
-  //     values: [
-  //       'Thoben',
-  //       'MEGAKILL',
-  //     ],
-  //   },
-  // });
-
-  // // extract the new row number from the A1-notation data range in the response
-  // // ex: in "'Sheet8!A2:C2" -- we want the `2`
-  // const { updatedRange } = response.data.updates;
-  // let rowNumber = updatedRange.match(/![A-Z]+([0-9]+):?/)[1];
-  // rowNumber = parseInt(rowNumber);
-  //
-  // // if new rows were added, we need update sheet.rowRount
-  // if (options.insert) {
-  //   this._rawProperties.gridProperties.rowCount += rows.length;
-  // }
-  // else if (rowNumber + rows.length > this.rowCount) {
-  //   // have to subtract 1 since one row was inserted at rowNumber
-  //   this._rawProperties.gridProperties.rowCount = rowNumber + rows.length - 1;
-  // }
-  //
-  // return _.map(response.data.updates.updatedData.values, (rowValues) => {
-  //   const row = new GoogleSpreadsheetRow(this, rowNumber++, rowValues);
-  //   return row;
-  // });
 }
