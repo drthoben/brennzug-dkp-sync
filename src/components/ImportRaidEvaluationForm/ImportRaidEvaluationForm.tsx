@@ -95,9 +95,10 @@ export function ImportRaidEvaluationForm(props: Props) {
       const currentDkp = row
         ? parseInt(row.cells[dkpColumn].value)
         : 10;
+      const dkpAfterRaid = Math.min(currentDkp + 10, 10);
       const nextDkp = items.length === 0
-        ? currentDkp + 1
-        : 10;
+        ? dkpAfterRaid + 1
+        : dkpAfterRaid;
       let recentLootText = `Vorherige DKP: ${currentDkp}`;
 
       if (items.length > 0) {
