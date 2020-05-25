@@ -1,4 +1,5 @@
 import { Button, Form, Input, message } from 'antd';
+import { useForm } from 'antd/lib/form/Form';
 import { GoogleSpreadsheet, GoogleSpreadsheetCellCollection } from 'google-spreadsheet';
 import React, { useCallback, useState } from 'react';
 import { DKP_LIST_COLUMNS, PLAYER_CLASSES, RAIDS } from '../../constants';
@@ -25,6 +26,7 @@ function getParticipantItems(evaluation: Evaluation, participant: Participant) {
 export function ImportRaidEvaluationForm(props: Props) {
   const { sheet } = props;
   const dkpSheet = getDkpWorksheet(sheet);
+  const [form] = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const handleFinish = useCallback(async (values) => {
     setIsLoading(true);
@@ -116,11 +118,18 @@ export function ImportRaidEvaluationForm(props: Props) {
 
     await dkpSheet.saveUpdatedCells();
 
+    message.success('Der Raid wurde erfolgreich importiert und die DKP-Stände angepasst!');
+
+    form.resetFields();
     setIsLoading(false);
-  }, [dkpSheet]);
+  }, [dkpSheet, form]);
 
   return (
-    <Form onFinish={handleFinish} layout="vertical">
+    <Form
+      form={form}
+      onFinish={handleFinish}
+      layout="vertical"
+    >
       <Form.Item
         label="JSON-Code"
         name="jsonCode"
