@@ -95,10 +95,11 @@ export function ImportRaidEvaluationForm(props: Props) {
       const currentDkp = row
         ? parseInt(row.cells[dkpColumn].value)
         : 10;
-      const dkpAfterRaid = Math.min(currentDkp + 10, 10);
-      const nextDkp = items.length === 0
-        ? dkpAfterRaid + 1
-        : dkpAfterRaid;
+      const dkpPaidForItems = items.reduce((carry, item) => carry + Number(item.givenTo.dkp), 0);
+      const dkpAfterRaid = currentDkp - dkpPaidForItems;
+      const nextDKP = items.length > 0
+        ? Math.min(dkpAfterRaid + 10, 10)
+        : dkpAfterRaid + 1;
       let recentLootText = `Vorherige DKP: ${currentDkp}`;
 
       if (items.length > 0) {
@@ -113,7 +114,7 @@ export function ImportRaidEvaluationForm(props: Props) {
         // TODO: Warning because dkp stored in addon differs from dkp in spreadsheet
       }
 
-      row.cells[dkpColumn].value = nextDkp;
+      row.cells[dkpColumn].value = nextDKP;
       row.cells[DKP_LIST_COLUMNS.RECENT_LOOT].value = recentLootText;
     }
 
