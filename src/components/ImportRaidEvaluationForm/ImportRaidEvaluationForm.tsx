@@ -67,7 +67,7 @@ export function ImportRaidEvaluationForm(props: Props) {
         const lastPlayerWithSameClass = getRowIndexOfLastPlayerWithClass(dkpSheet, playerClass);
         const newRowIndex = lastPlayerWithSameClass + 1;
 
-        await insertRowAfter(dkpSheet, newRowIndex + 1);
+        await insertRowAfter(dkpSheet, newRowIndex);
 
         // Update player rows
         const newRow = getRow(dkpSheet, newRowIndex);
