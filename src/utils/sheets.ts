@@ -5,6 +5,10 @@ export function getDkpWorksheet(sheet: GoogleSpreadsheet) {
   return sheet.sheetsByIndex.find(current => current.title === 'Punkteübersicht');
 }
 
+export function getLootLogWorksheet(sheet: GoogleSpreadsheet) {
+  return sheet.sheetsByIndex.find(current => current.title === 'Logbuch');
+}
+
 export function getRow(worksheet: GoogleSpreadsheetWorksheet, rowIndex: number) {
   const row: GoogleSpreadsheetCellCollection = {
     get rowIndex() {
