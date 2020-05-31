@@ -14,3 +14,11 @@ body {
 .ant-tabs .ant-tabs-bottom-content > .ant-tabs-tabpane {
 	transition: none;
 }
+
+.component-block + .component-block::before {
+	content: '';
+	display: block;
+	height: 1px;
+	margin: 1.5rem -1.5rem;
+	background-color: #e8e8e8;
+}
