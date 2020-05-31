@@ -3,6 +3,7 @@ import { PLAYER_CLASSES, RAIDS } from '../constants';
 
 export interface Evaluation {
   raid: keyof typeof RAIDS;
+  date: string,
   participants: Participant[];
   loot: LootEntry[];
 }
