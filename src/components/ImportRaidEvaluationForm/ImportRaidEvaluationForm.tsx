@@ -99,7 +99,7 @@ export function ImportRaidEvaluationForm(props: Props) {
       const dkpAfterRaid = currentDkp - dkpPaidForItems;
       let dkpForNextRaid = dkpPaidForItems === 0
         ? dkpAfterRaid + 1
-        : dkpAfterRaid;
+        : Math.min(dkpAfterRaid, 10);
       let recentLootText = `Vorherige DKP: ${currentDkp}`;
 
       if (dkpForNextRaid < 10) {
