@@ -11,6 +11,12 @@ export const RAIDS = {
   ZUL_GURUB: 'ZUL_GURUB',
 };
 
+export const RAID_NAMES = {
+  [RAIDS.MOLTEN_CORE]: 'Molten Core',
+  [RAIDS.BLACKWING_LAIR]: 'Blackwing Lair',
+  [RAIDS.ZUL_GURUB]: 'Zul Gurub',
+};
+
 export const PLAYER_CLASSES = {
   DRUID: 'DRUID',
   HUNTER: 'HUNTER',
