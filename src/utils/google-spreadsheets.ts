@@ -1,7 +1,7 @@
 import { GoogleSpreadsheetWorksheet } from 'google-spreadsheet';
 
 
-export async function insertRowAfter(worksheet: GoogleSpreadsheetWorksheet, rowIndex: number) {
+export async function insertRowAfter(worksheet: GoogleSpreadsheetWorksheet, rowIndex: number, amount: number = 1) {
   // adds multiple rows in one API interaction using the append endpoint
 
   // each row can be an array or object
@@ -29,7 +29,7 @@ export async function insertRowAfter(worksheet: GoogleSpreadsheetWorksheet, rowI
               sheetId: worksheet.sheetId,
               dimension: 'ROWS',
               startIndex: rowIndex,
-              endIndex: rowIndex + 1,
+              endIndex: rowIndex + amount,
             },
             inheritFromBefore: rowIndex > 0,
           },
