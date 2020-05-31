@@ -48,11 +48,12 @@ export function Start(props: Props) {
   }, [loadSheet, onFinish]);
 
   useAsyncEffect(async () => {
-    setIsLoading(true);
-
     try {
       const sheetUrl = window.localStorage.getItem(STORAGE_KEYS.SHEET_URL);
       const credentials = JSON.parse(window.localStorage.getItem(STORAGE_KEYS.CREDENTIALS));
+
+      setIsLoading(true);
+
       const sheet = await loadSheet(sheetUrl, credentials);
 
       setIsLoading(false);
