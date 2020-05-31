@@ -20,11 +20,11 @@ export function getRow(worksheet: GoogleSpreadsheetWorksheet, rowIndex: number) 
   return row;
 }
 
-export function getRows(worksheet: GoogleSpreadsheetWorksheet) {
+export function getRows(worksheet: GoogleSpreadsheetWorksheet, offset: number = 0, limit: number = Infinity) {
   const rows: GoogleSpreadsheetCellCollection[] = [];
 
-  for (let row = 0; row < worksheet.rowCount; row += 1) {
-    rows[row] = getRow(worksheet, row);
+  for (let i = 0, row = offset; row < worksheet.rowCount && i < limit; i += 1, row += 1) {
+    rows[i] = getRow(worksheet, row);
   }
 
   return rows;
